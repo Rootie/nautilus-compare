@@ -36,7 +36,7 @@ import os
 import sys
 import locale
 import gettext
-from plumbum import local
+import subprocess
 
 APP = 'nautilus-compare'
 LANGDIR = os.path.join('usr', 'share', 'locale-langpack')
@@ -99,6 +99,5 @@ class CompareMenuProvider(GObject.GObject, FileManager.MenuProvider):
 
     def on_menuitem_activated(self, widget, sel_items):
         files = [file_in.get_location().get_path() for file_in in sel_items]
-        meld = local['meld']
-        meld[files]()
+        subprocess.Popen(['meld'] + files)
         return
