@@ -25,7 +25,7 @@
 
 import gi
 try:
-    gi.require_version('Nautilus', '3.0')
+    gi.require_version('Nautilus', '4.0')
     gi.require_version('GObject', '2.0')
 except ValueError as e:
     print(e)
@@ -63,7 +63,7 @@ class CompareMenuProvider(GObject.GObject, FileManager.MenuProvider):
         method"""
         GObject.Object.__init__(self)
 
-    def get_file_items(self, window, sel_items):
+    def get_file_items(self, sel_items):
         if len(sel_items) == 2 or len(sel_items) == 3:
             compare = COMPARE_NONE
             for afile in sel_items:
